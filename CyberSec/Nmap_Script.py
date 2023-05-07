@@ -33,7 +33,7 @@ def check_cve(dic):
         r = requests.get(f'https://services.nvd.nist.gov/rest/json/cves/2.0?cpeName=cpe:2.3:{cpe}')
         cve = re.findall("CVE-\d{4}-\d{4,7}",r.text)
         dic[i]['cve'] = cve
-        time.sleep(3)
+        time.sleep(8)
     return dic
             
 def log(dic):

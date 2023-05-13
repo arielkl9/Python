@@ -31,8 +31,10 @@ def prints(num):
 
 def set_globals():
     global nmap 
+    global nmap_array
 
     nmap = nmap3.Nmap()
+    nmap_array = []
 
     global nmap_file
     global json_file
@@ -62,7 +64,7 @@ def scan_managment():
         if dic:
             dic = check_cve(dic)
             json_data[f'{ip}'] = log(ip.compressed,readable_format, dic)
-    json_file.writelines(json.dumps(json_data,indent=4))
+    json_file.writelines(json.dumps(json_data,indent=2))
 
 def scan(host):
     clear_screen()
@@ -72,7 +74,7 @@ def scan(host):
     data = nmap.nmap_version_detection(host)
     if data[f"{host}"]['ports']:
         dic = data[f"{host}"]['ports']
-        nmap_file.writelines(json.dumps(data, indent=4))
+        nmap_array.append(data)
         scan_file.writelines(f"\nScan Result For {host}:\n")
         for port in data[f"{host}"]['ports']:
             try:
@@ -120,6 +122,7 @@ def check_cve(dic):
         return (0)
 
 def log(ip,readable_format,dic):
+    nmap_file.writelines(json.dumps(nmap_array,indent=2))
     cve_file.writelines(f"\nScan Results For Ip - {ip}:\n")
     for i in range(len(dic)):
         cve_file.writelines("--------------------------------------------------------------------------------------------------------\n")

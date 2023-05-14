@@ -49,6 +49,7 @@ def set_globals():
 def get_hosts():
     while True:
         try:
+            prints(1)
             hosts = ipaddress.IPv4Network(input("Enter Network To Scan (Format CIDR -> X.X.X.X/X): "))
             break
         except Exception:
@@ -157,7 +158,6 @@ def clear_screen():
 def main():
     try:
         os.makedirs('results', exist_ok=True)
-        prints(1)
         set_globals()
         scan_managment()
         close_files()

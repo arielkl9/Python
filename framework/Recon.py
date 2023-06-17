@@ -2,20 +2,26 @@ import whois
 import dns.resolver
 import requests
 import Misc
-import json
+import os
 
 class Recon:
     def who_is(website, path):
         with open(f"{path}/Whois.txt","w") as whoisfile:
             print("Initializing Whois Scan...\n")
             whoisfile.write("\nWhois Scan Results:\n\n")
-            whoisresult = whois.query(website)
-            for i in whoisresult.__dict__.keys():
-                whoisfile.writelines(f"{str(i)}:\n")
-                whoisfile.writelines(f"{str(whoisresult.__dict__[i])}\n\n")
-                print(f"{str(i)}:")
-                print(f"{str(whoisresult.__dict__[i])}\n")
+            try:
+                os.getuid()
+                whoisresult = whois.query(website)
+                for i in whoisresult.__dict__.keys():
+                    whoisfile.writelines(f"{str(i)}:\n")
+                    whoisfile.writelines(f"{str(whoisresult.__dict__[i])}\n\n")
+                    print(f"{str(i)}:")
+                    print(f"{str(whoisresult.__dict__[i])}\n")
                 
+            except AttributeError:
+                whoisresult = whois.whois(website)
+                whoisfile.write(str(whoisresult))
+                print(f"{whoisresult}\n")
 
     def dns_enum(website, path):
         with open(f"{path}/DNS_Enum.txt","w") as dnsenumfile:

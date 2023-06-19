@@ -1,6 +1,7 @@
 import Misc
 import Recon
 import Scan
+import Dirs
 
 class MenusRecon:
     def print_menu_recon():
@@ -97,6 +98,13 @@ class MenusScan:
             print("Bad Input!!! Exiting")
             exit()
 
+class BruteForceMenus:
+    def dir_buster_menu():
+        Misc.Misc.clear_screen()
+        print("Example: http://127.0.0.1 , https://google.com\n")
+        domain = input("Enter Domain/IP To Scan: ")
+        Dirs.MyDirBuster.my_dir_buster(domain)
+
 class main():
     while True:
         Misc.Misc.clear_screen()
@@ -105,6 +113,7 @@ class main():
         print("Please Choose Module:\n")
         print("1. Recon Module\n")
         print("2. Scan Module\n")
+        print("3. My Web Dir BF! - New")
         choise = input()
         if choise == '1':
             MenusRecon.main_recon()
@@ -112,7 +121,9 @@ class main():
         if choise == '2':
             MenusScan.main_menu()
             break
+        if choise == '3':
+            BruteForceMenus.dir_buster_menu()
+            break
+            
 
 main()
-
-

@@ -1,7 +1,0 @@
-account
-info
-mail
-email
-il
-maps
-private

@@ -33,4 +33,5 @@ class MyDirBuster:
                                     print(f"{domain}/{line} CODE: {code}")
                                     res.writelines(f"[+] {domain}/{line} CODE: {code}\n")
                             bar()
+                            
                                 

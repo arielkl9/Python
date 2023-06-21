@@ -34,4 +34,5 @@ class MyDirBuster:
                                     res.writelines(f"[+] {domain}/{line} CODE: {code}\n")
                             bar()
                             
+                            
                                 
